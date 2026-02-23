@@ -4,7 +4,8 @@ import os
 
 cars_bp = Blueprint("cars_bp", __name__)
 
-DATA_FILE = "cars.json"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_FILE = os.path.join(BASE_DIR, "cars.json")
 
 
 def load_cars():
@@ -98,5 +99,6 @@ def delete_car(reg):
 
     deleted = cars.pop(reg)
     save_cars(cars)
+
 
     return jsonify({"deleted": deleted}), 200
